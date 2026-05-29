@@ -1,0 +1,70 @@
+<section id="features" class="section muted">
+    <div class="section-wrap">
+        <div class="section-heading centered reveal">
+            <p class="eyebrow">What you get</p>
+            <h2>Built for citizens, operators and the state.</h2>
+            <p class="lead">Every feature is hardened for nationwide rollout — offline-first, audited, and resilient by design.</p>
+        </div>
+        <div class="features">
+            {% set features = [
+                {
+                    'title': 'OTP-secured login',
+                    'text': 'Phone-based authentication and biometric unlock. No passwords to forget, no impersonation.',
+                    'icon': 'lock',
+                    'color': 'icon-blue'
+                },
+                {
+                    'title': 'Citizen mobile app',
+                    'text': 'Track quota, vehicles, transactions and household members from one place. Free on iOS and Android.',
+                    'icon': 'smartphone',
+                    'color': 'icon-orange'
+                },
+                {
+                    'title': 'Real-time quota tracking',
+                    'text': 'Every dispense reduces your balance instantly — across stations, across vehicles, across the country.',
+                    'icon': 'gauge',
+                    'color': 'icon-indigo'
+                },
+                {
+                    'title': 'Offline sync for operators',
+                    'text': 'Pumps in remote areas keep dispensing without signal and reconcile transactions when reconnected.',
+                    'icon': 'wifi-off',
+                    'color': 'icon-rose'
+                },
+                {
+                    'title': 'Admin analytics dashboard',
+                    'text': 'Live visibility into stations, queues, fraud signals and regional consumption for policy teams.',
+                    'icon': 'bar-chart',
+                    'color': 'icon-slate'
+                },
+                {
+                    'title': 'Auto weekly reset',
+                    'text': 'Quotas roll over at midnight every Monday — fair, predictable and impossible to game.',
+                    'icon': 'refresh-cw',
+                    'color': 'icon-amber'
+                }
+            ] %}
+            {% for feature in features %}
+                <article class="feature-card reveal" data-delay="{{ loop.index % 3 }}">
+                    <span class="{{ feature.color }}" aria-hidden="true">
+                        {% if feature.icon == 'lock' %}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        {% elseif feature.icon == 'smartphone' %}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12" y2="18"></line></svg>
+                        {% elseif feature.icon == 'gauge' %}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"></path><path d="M3.34 19a10 10 0 1 1 17.32 0"></path></svg>
+                        {% elseif feature.icon == 'wifi-off' %}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"></line><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path><path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+                        {% elseif feature.icon == 'bar-chart' %}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>
+                        {% elseif feature.icon == 'refresh-cw' %}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                        {% endif %}
+                    </span>
+                    <h3>{{ feature.title }}</h3>
+                    <p>{{ feature.text }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>

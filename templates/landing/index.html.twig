@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FuelPass | Smart Fuel. Fair Share.{% endblock %}
+
+{% block body %}
+    {% include 'landing/sections/header.html.twig' %}
+    {% include 'landing/sections/mobile_menu.html.twig' %}
+
+    <main id="top">
+        {% include 'landing/sections/hero.html.twig' %}
+        {% include 'landing/sections/video.html.twig' %}
+        {% include 'landing/sections/how_it_works.html.twig' %}
+        {% include 'landing/sections/features.html.twig' %}
+        {% include 'landing/sections/brochure.html.twig' %}
+        {% include 'landing/sections/impact.html.twig' %}
+        {% include 'landing/sections/apps.html.twig' %}
+        {% include 'landing/sections/operator.html.twig' %}
+        {% include 'landing/sections/built_by.html.twig' %}
+    </main>
+
+    {% include 'landing/sections/video_modal.html.twig' %}
+    {% include 'landing/sections/footer.html.twig' %}
+{% endblock %}
