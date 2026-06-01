@@ -667,6 +667,7 @@ h3 {
     opacity: .22;
     background-image: linear-gradient(rgba(255, 255, 255, .14) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .14) 1px, transparent 1px);
     background-size: 42px 42px;
+    transition: opacity 0.3s;
 }
 
 .video-card::after {
@@ -678,6 +679,13 @@ h3 {
     height: 45%;
     background:
         linear-gradient(90deg, rgba(255, 255, 255, .08) 0 8%, transparent 8% 14%, rgba(255, 255, 255, .08) 14% 22%, transparent 22% 28%, rgba(255, 255, 255, .08) 28% 35%, transparent 35% 72%, rgba(255, 255, 255, .08) 72% 80%, transparent 80% 86%, rgba(255, 255, 255, .08) 86% 100%);
+    transition: opacity 0.3s;
+}
+
+.video-card.is-playing::before,
+.video-card.is-playing::after {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .video-badge {
@@ -691,6 +699,12 @@ h3 {
     color: #fff;
     font-size: 12px;
     font-weight: 800;
+    transition: opacity 0.3s;
+}
+
+.video-card.is-playing .video-badge {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .video-play {
@@ -702,12 +716,35 @@ h3 {
     width: 70px;
     height: 70px;
     place-items: center;
+    border: 0;
     border-radius: 50%;
     background: var(--accent);
     color: #211504;
     box-shadow: 0 18px 40px rgba(245, 166, 35, .45);
     transform: translate(-50%, -50%);
     font-size: 24px;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.video-card.is-playing .video-play {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+.video-card [data-video-frame] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    opacity: 0;
+    transition: opacity 0.4s 0.1s;
+}
+
+.video-card.is-playing [data-video-frame] {
+    opacity: 1;
 }
 
 .steps,
@@ -3374,46 +3411,6 @@ h3 {
     font-weight: 700;
 }
 
-.video-modal {
-    position: fixed;
-    z-index: 90;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    background: rgba(3, 10, 20, .88);
-}
-
-.video-modal.is-open {
-    display: flex;
-}
-
-.video-modal button {
-    position: absolute;
-    top: 22px;
-    right: 22px;
-    padding: 10px 14px;
-    border: 1px solid rgba(255, 255, 255, .3);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, .1);
-    color: #fff;
-}
-
-.video-frame {
-    width: min(1080px, 100%);
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border-radius: 18px;
-    background: #000;
-    box-shadow: 0 40px 110px rgba(0, 0, 0, .5);
-}
-
-.video-frame iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
 
 .js .reveal {
     opacity: 1;

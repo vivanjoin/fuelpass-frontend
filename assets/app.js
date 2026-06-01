@@ -5,9 +5,6 @@ document.documentElement.classList.add('js');
 
 const header = document.querySelector('[data-header]');
 const menu = document.querySelector('[data-mobile-menu]');
-const videoModal = document.querySelector('[data-video-modal]');
-const videoFrame = document.querySelector('[data-video-frame]');
-const videoUrl = 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1';
 
 function setHeaderState() {
     if (!header) {
@@ -80,21 +77,24 @@ menu?.querySelectorAll('a').forEach((link) => {
     });
 });
 
-function closeVideo() {
-    videoModal?.classList.remove('is-open');
-    videoModal?.setAttribute('aria-hidden', 'true');
-    if (videoFrame) {
-        videoFrame.removeAttribute('src');
-    }
+function playInlineVideo(card) {
+    const frame = card.querySelector('[data-video-frame]');
+    const videoId = card.dataset.videoId ?? '';
+    if (!frame || !videoId || card.classList.contains('is-playing')) return;
+    frame.setAttribute('src', `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`);
+    card.classList.add('is-playing');
 }
+
+document.querySelectorAll('[data-video-inline]').forEach((card) => {
+    card.querySelector('.video-play')?.addEventListener('click', () => playInlineVideo(card));
+});
 
 document.querySelectorAll('[data-video-open]').forEach((button) => {
     button.addEventListener('click', () => {
-        if (videoFrame) {
-            videoFrame.setAttribute('src', videoUrl);
-        }
-        videoModal?.classList.add('is-open');
-        videoModal?.setAttribute('aria-hidden', 'false');
+        const card = document.querySelector('[data-video-inline]');
+        if (!card) return;
+        scrollToSection('#video');
+        window.setTimeout(() => playInlineVideo(card), 600);
     });
 });
 
@@ -135,16 +135,8 @@ document.querySelectorAll('[data-phone-slider]').forEach((slider) => {
     });
 });
 
-document.querySelector('[data-video-close]')?.addEventListener('click', closeVideo);
-videoModal?.addEventListener('click', (event) => {
-    if (event.target === videoModal) {
-        closeVideo();
-    }
-});
-
 window.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
-        closeVideo();
         menu?.classList.remove('is-open');
         menu?.setAttribute('aria-hidden', 'true');
     }

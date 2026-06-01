@@ -5,9 +5,10 @@
             <h2>A 2-minute tour of FuelPass</h2>
             <p class="lead">From citizen registration to operator scan and admin reporting, see how the full fuel distribution flow works.</p>
         </div>
-        <button class="video-card reveal" type="button" data-video-open aria-label="Watch FuelPass product tour">
+        <div class="video-card reveal" data-video-inline data-video-id="{{ productTourVideoId }}">
             <span class="video-badge">Product tour</span>
-            <span class="video-play">▶</span>
-        </button>
+            <button class="video-play" type="button" aria-label="Watch FuelPass product tour">▶</button>
+            <iframe title="FuelPass product tour" data-video-frame allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
     </div>
 </section>
